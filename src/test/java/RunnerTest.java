@@ -9,7 +9,7 @@ import java.net.URL;
 import java.net.MalformedURLException;
 
 
-public class Runner {
+public class RunnerTest {
 
         String reportDirectory = "reports";
         String reportFormat = "xml";
