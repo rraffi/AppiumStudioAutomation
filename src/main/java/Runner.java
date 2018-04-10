@@ -9,7 +9,9 @@ import java.net.URL;
 import java.net.MalformedURLException;
 
 
-public class RunnerTest {
+public class Runner {
+
+    public static void main(String [] args) {
 
         String reportDirectory = "reports";
         String reportFormat = "xml";
@@ -17,18 +19,15 @@ public class RunnerTest {
         IOSDriver<IOSElement> driver = null;
         DesiredCapabilities dc = new DesiredCapabilities();
 
-        @Before
-        public void setUp () throws MalformedURLException {
+        try {
             dc.setCapability("reportDirectory", reportDirectory);
             dc.setCapability("reportFormat", reportFormat);
             dc.setCapability("testName", testName);
             dc.setCapability(MobileCapabilityType.UDID, "e649b1ece17f0f7feefe5fe826ce6581f8ae407d");
             dc.setCapability("instrumentApp", true);    //DesiredCapability to instrument the app
             driver = new IOSDriver<>(new URL("http://localhost:4723/wd/hub"), dc);
-        }
 
-        @Test
-        public void testUntitled () {
+
             driver.executeScript("client:client.setDevice(\"ios_app:Riaz\")");
             driver.executeScript("client:client.launch(\"com.homedepot.homeservices.selling.qa.planning\", \"true\", \"true\")");
             if (driver.findElement(By.xpath("//*[@text='Reset Password']")) != null) {
@@ -36,11 +35,9 @@ public class RunnerTest {
                 System.out.println("Found Element");
             }
 
-
-        }
-
-        @After
-        public void tearDown () {
             driver.quit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 }
