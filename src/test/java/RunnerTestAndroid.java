@@ -1,3 +1,4 @@
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.*;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
@@ -30,12 +31,11 @@ public class RunnerTestAndroid {
         dc.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         dc.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1");
 //            dc.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
-//            dc.setCapability(IOSMobileCapabilityType.);
         dc.setCapability(MobileCapabilityType.UDID, "192.168.56.101:5555");
 //            dc.setCapability(MobileCapabilityType.APP, "/Users/rraffi/Workspace/mobile-test/builds/Pandora.app");
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.pandora.android");
-        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".Main");
-        driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), dc);
+        dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "com.pandora.android.Main");
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), dc);
     }
 
     @Test
@@ -46,6 +46,6 @@ public class RunnerTestAndroid {
 
     @AfterTest
     public void tearDown () {
-        driver.quit();
+//        driver.quit();
     }
 }
